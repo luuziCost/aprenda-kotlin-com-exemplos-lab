@@ -1,21 +1,55 @@
 // [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
 
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
+enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
 
-class Usuario
-
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
-
-data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
-
-    val inscritos = mutableListOf<Usuario>()
+class Usuario(nome:String, sobrenome:String, val estado: String, val anoNasc:Int, val nivel_do_curso: String) {  
     
-    fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
-    }
+ var nome:String
+ var sobrenome:String
+    
+ init {
+     this.nome = nome
+     this.sobrenome = sobrenome    
+ }
+   
+  override fun toString() :String {
+      return "Usuario: $nome, sobrenome: $sobrenome, estado: $estado, anoNasc: $anoNasc, nivel_do_curso: $nivel_do_curso"
+       
+  }
+ 
 }
 
-fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+   data class ConteudoEducacional(val cursoDe:String, val duracaoHoras:Int = 360) {
+  
+} 
+ 
+   data class Formacao(val aluno: String){ 
+ 
+ } 
+
+   fun main() {
+   
+   val curso_Sobre = ConteudoEducacional("Kotlin") 
+   println(curso_Sobre)
+   for (niveis in Nivel.entries) println(niveis.toString())
+    
+   val inscritos = mutableListOf<Usuario>()
+   
+   val inscrito = Formacao("matriculado ")
+   print("Formacao: ${inscrito.aluno}") 
+ 
+   val inscrito1 = Usuario("Lidia","Bela", "DF", 2000, "basico") 
+   val inscrito2 = Usuario("Mauro", "Silas", "RJ", 1980, "avançado") 
+     inscritos.add(inscrito1)
+     inscritos.add(inscrito2)
+     for(inscricao in inscritos) {
+         println(inscricao)   
+      } 
+ }
+  
+  fun matricular(vararg usuario: String): List<String> {
+    val matriculados = ArrayList<String>()
+    for (matriculas in usuario)
+     matriculados.add(matriculas)
+     return matriculados
 }
